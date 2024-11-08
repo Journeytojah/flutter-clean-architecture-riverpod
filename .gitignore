@@ -50,3 +50,5 @@ app.*.map.json
 /coverage/*
 !/coverage/lcov.info
 .vscode
+.dart_tool/*
+.dart_tool/package_config.json

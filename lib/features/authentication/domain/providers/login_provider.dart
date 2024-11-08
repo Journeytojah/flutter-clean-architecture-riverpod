@@ -6,14 +6,14 @@ import 'package:flutter_project/shared/domain/providers/dio_network_service_prov
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final authDataSourceProvider =
-    Provider.family<LoginUserDataSource, NetworkService>(
-  (_, networkService) => LoginUserRemoteDataSource(networkService),
+    Provider.family<AuthRemoteDataSource, NetworkService>(
+  (_, networkService) => AuthRemoteDataSourceImpl(networkService),
 );
 
 final authRepositoryProvider = Provider<AuthenticationRepository>(
   (ref) {
     final NetworkService networkService = ref.watch(networkServiceProvider);
-    final LoginUserDataSource dataSource =
+    final AuthRemoteDataSource dataSource =
         ref.watch(authDataSourceProvider(networkService));
     return AuthenticationRepositoryImpl(dataSource);
   },

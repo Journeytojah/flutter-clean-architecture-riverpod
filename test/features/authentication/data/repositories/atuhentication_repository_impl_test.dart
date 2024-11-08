@@ -10,7 +10,7 @@ import 'package:mocktail/mocktail.dart';
 import '../../../../fixtures/dummy_data.dart';
 
 void main() {
-  late LoginUserDataSource mockLoginUserDataSource;
+  late AuthRemoteDataSource mockLoginUserDataSource;
   late AuthenticationRepository authenticationRepository;
   setUpAll(
     () {

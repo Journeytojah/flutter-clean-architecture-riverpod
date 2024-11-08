@@ -5,12 +5,17 @@ import 'package:flutter_project/shared/domain/models/user/user_model.dart';
 import 'package:flutter_project/shared/exceptions/http_exception.dart';
 
 class AuthenticationRepositoryImpl extends AuthenticationRepository {
-  final LoginUserDataSource dataSource;
+  final AuthRemoteDataSource dataSource;
 
   AuthenticationRepositoryImpl(this.dataSource);
 
   @override
   Future<Either<AppException, User>> loginUser({required User user}) {
     return dataSource.loginUser(user: user);
+  }
+
+  @override
+  Future<Either<AppException, User>> registerUser({required User user}) {
+    return dataSource.registerUser(user: user);
   }
 }

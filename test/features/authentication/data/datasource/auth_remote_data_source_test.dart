@@ -10,11 +10,11 @@ import '../../../../fixtures/dummy_data.dart';
 
 void main() {
   late MockNetworkService mockNetworkService;
-  late LoginUserRemoteDataSource loginUserRemoteDataSource;
+  late AuthRemoteDataSource loginUserRemoteDataSource;
   setUpAll(
     () {
       mockNetworkService = MockNetworkService();
-      loginUserRemoteDataSource = LoginUserRemoteDataSource(mockNetworkService);
+      loginUserRemoteDataSource = AuthRemoteDataSourceImpl(mockNetworkService);
     },
   );
   group(

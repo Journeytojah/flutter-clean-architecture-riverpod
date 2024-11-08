@@ -56,7 +56,7 @@ class LoginScreen extends ConsumerWidget {
                 orElse: () => Column(
                       children: [
                         loginButton(ref),
-                        // registerButton(context),
+                        registerButton(context),
                       ],
                     )),
           ],
@@ -78,12 +78,12 @@ class LoginScreen extends ConsumerWidget {
     );
   }
 
-  // Widget registerButton(BuildContext context) {
-  //   return TextButton(
-  //     onPressed: () {
-  //       AutoRouter.of(context).push(RegisterRoute());
-  //     },
-  //     child: const Text('Register'),
-  //   );
-  // }
+  Widget registerButton(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        AutoRouter.of(context).push(RegisterRoute());
+      },
+      child: const Text('Register'),
+    );
+  }
 }

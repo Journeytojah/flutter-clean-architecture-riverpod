@@ -1,5 +1,3 @@
-![Coverage](coverage_badge.svg) [![HitCount](https://hits.dwyl.com/Uuttssaavv/flutter-clean-architecture-riverpod.svg?style=flat-square)](http://hits.dwyl.com/Uuttssaavv/flutter-clean-architecture-riverpod)
-
 # Flutter Clean Architecture with Riverpod
 
 A Flutter app that uses the "Dummy Json" api.
@@ -282,7 +280,7 @@ lib
 │ │ │ │ ├──  auth_local_data_source.dart
 │ │ │ │ └── auth_remote_data_source.dart
 │ │ │ └── repositories
-│ │ │   └── atuhentication_repository_impl.dart
+│ │ │   └── authentication_repository_impl.dart
 │ │ ├──  domain
 │ │ │ ├──  providers
 │ │ │ │ └── login_provider.dart
@@ -308,7 +306,7 @@ lib
 
 ##### Clone this repository
 
-` git clone https://github.com/Uuttssaavv/flutter-clean-architecture-riverpod`
+` git clone https://github.com/journeytojah/flutter-clean-architecture-riverpod`
 
 ##### Go to the project directory
 
@@ -325,7 +323,3 @@ lib
 ##### Run the project
 
 `flutter run` or simply press ` F5 key` if you are using VSCode
-
-### About Me
-
-Do visit my [portfolio site](https://utsavghimire.com.np) or connect with me on [linkedin](https://www.linkedin.com/in/utsav-ghimire-10352a18b/)
