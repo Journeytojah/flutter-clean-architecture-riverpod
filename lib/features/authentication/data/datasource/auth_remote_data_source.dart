@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_project/shared/data/remote/remote.dart';
 import 'package:flutter_project/shared/domain/models/either.dart';
 import 'package:flutter_project/shared/domain/models/models.dart';
@@ -15,9 +16,22 @@ class LoginUserRemoteDataSource implements LoginUserDataSource {
   @override
   Future<Either<AppException, User>> loginUser({required User user}) async {
     try {
+      final data = {
+        "formFields": [
+          {
+            "id": "email",
+            "value": user.username,
+          },
+          {
+            "id": "password",
+            "value": user.password,
+          }
+        ]
+      };
+
       final eitherType = await networkService.post(
-        '/auth/login',
-        data: user.toJson(),
+        'http://localhost:50000/auth/signin',
+        data: data,
       );
       return eitherType.fold(
         (exception) {
@@ -25,6 +39,7 @@ class LoginUserRemoteDataSource implements LoginUserDataSource {
         },
         (response) {
           final user = User.fromJson(response.data);
+          debugPrint('User: $user');
           // update the token for requests
           networkService.updateHeader(
             {'Authorization': user.token},

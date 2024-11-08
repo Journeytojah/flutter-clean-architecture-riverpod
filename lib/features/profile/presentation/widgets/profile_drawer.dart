@@ -7,8 +7,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../routes/app_route.dart';
 
-class DashboardDrawer extends ConsumerWidget {
-  const DashboardDrawer({
+class ProfileDrawer extends ConsumerWidget {
+  const ProfileDrawer({
     Key? key,
   }) : super(key: key);
 

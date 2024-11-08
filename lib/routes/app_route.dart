@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../features/authentication/presentation/screens/login_screen.dart';
 import '../features/dashboard/presentation/screens/dashboard_screen.dart';
 import '../features/splash/presentation/screens/splash_screen.dart';
+import '../features/profile/presentation/screens/profile_screen.dart';
 part 'app_route.gr.dart';
 // @MaterialAutoRouter(
 //   replaceInRouteName: 'Page,Route',
@@ -29,5 +30,6 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: SplashRoute.page, initial: true),
         AutoRoute(page: LoginRoute.page),
         AutoRoute(page: DashboardRoute.page),
+        AutoRoute(page: ProfileRoute.page),
       ];
 }

@@ -1,20 +1,31 @@
 import 'package:equatable/equatable.dart';
 
 class User extends Equatable {
-  final int id;
+  final String id;
+  final int timeJoined;
+  final String tenantId;
+  final String email;
+  final bool isEmailVerified;
+  final String? phoneNumber;
+  final bool isPhoneNumberVerified;
   final String username;
   final String password;
-  final String email;
   final String firstName;
   final String lastName;
   final String gender;
   final String image;
   final String token;
+
   const User({
-    this.id = 0,
+    this.id = '',
+    this.timeJoined = 0,
+    this.tenantId = '',
+    this.email = '',
+    this.isEmailVerified = false,
+    this.phoneNumber,
+    this.isPhoneNumberVerified = false,
     this.username = '',
     this.password = '',
-    this.email = '',
     this.firstName = '',
     this.lastName = '',
     this.gender = '',
@@ -25,9 +36,14 @@ class User extends Equatable {
   @override
   List<Object?> get props => [
         id,
+        timeJoined,
+        tenantId,
+        email,
+        isEmailVerified,
+        phoneNumber,
+        isPhoneNumberVerified,
         username,
         password,
-        email,
         firstName,
         lastName,
         gender,
@@ -38,9 +54,14 @@ class User extends Equatable {
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
       'id': id,
+      'timeJoined': timeJoined,
+      'tenantId': tenantId,
+      'email': email,
+      'isEmailVerified': isEmailVerified,
+      'phoneNumber': phoneNumber,
+      'isPhoneNumberVerified': isPhoneNumberVerified,
       'username': username,
       'password': password,
-      'email': email,
       'firstName': firstName,
       'lastName': lastName,
       'gender': gender,
@@ -49,23 +70,41 @@ class User extends Equatable {
     };
   }
 
-  factory User.fromJson(Map<String, dynamic> map) => User(
-        id: map['id'] ?? 0,
-        username: map['username'] ?? '',
-        password: map['password'] ?? '',
-        email: map['email'] ?? '',
-        firstName: map['firstName'] ?? '',
-        lastName: map['lastName'] ?? '',
-        gender: map['gender'] ?? '',
-        image: map['image'] ?? '',
-        token: map['token'] ?? '',
-      );
+  factory User.fromJson(Map<String, dynamic> map) {
+    final userMap = map['user'] ?? map;
+
+    return User(
+      id: userMap['id'] ?? '',
+      timeJoined: userMap['timeJoined'] ?? 0,
+      tenantId:
+          (userMap['tenantIds'] != null && userMap['tenantIds'].isNotEmpty)
+              ? userMap['tenantIds'][0]
+              : '',
+      email: userMap['email'] ?? '',
+      isEmailVerified: userMap['isEmailVerified'] ?? false,
+      phoneNumber: userMap['phoneNumber'],
+      isPhoneNumberVerified: userMap['isPhoneNumberVerified'] ?? false,
+      username: userMap['username'] ?? '',
+      password: userMap['password'] ?? '',
+      firstName: userMap['firstName'] ?? '',
+      lastName: userMap['lastName'] ?? '',
+      gender: userMap['gender'] ?? '',
+      image: userMap['image'] ?? '',
+      token: map['st-access-token'] ??
+          '', // Ensure you extract the token if it's part of headers or response
+    );
+  }
 
   User copyWith({
-    int? id,
+    String? id,
+    int? timeJoined,
+    String? tenantId,
+    String? email,
+    bool? isEmailVerified,
+    String? phoneNumber,
+    bool? isPhoneNumberVerified,
     String? username,
     String? password,
-    String? email,
     String? firstName,
     String? lastName,
     String? gender,
@@ -74,9 +113,15 @@ class User extends Equatable {
   }) {
     return User(
       id: id ?? this.id,
+      timeJoined: timeJoined ?? this.timeJoined,
+      tenantId: tenantId ?? this.tenantId,
+      email: email ?? this.email,
+      isEmailVerified: isEmailVerified ?? this.isEmailVerified,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      isPhoneNumberVerified:
+          isPhoneNumberVerified ?? this.isPhoneNumberVerified,
       username: username ?? this.username,
       password: password ?? this.password,
-      email: email ?? this.email,
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
       gender: gender ?? this.gender,

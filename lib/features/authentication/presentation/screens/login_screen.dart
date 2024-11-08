@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_project/configs/app_configs.dart';
 import 'package:flutter_project/features/authentication/presentation/providers/auth_providers.dart';
 import 'package:flutter_project/features/authentication/presentation/providers/state/auth_state.dart';
 import 'package:flutter_project/features/authentication/presentation/widgets/auth_field.dart';
@@ -14,9 +15,9 @@ class LoginScreen extends ConsumerWidget {
   LoginScreen({Key? key}) : super(key: key);
 
   final TextEditingController usernameController =
-      TextEditingController(text: 'kminchelle');
+      TextEditingController(text: '');
   final TextEditingController passwordController =
-      TextEditingController(text: '0lelplR');
+      TextEditingController(text: '');
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(authStateNotifierProvider);
@@ -35,7 +36,7 @@ class LoginScreen extends ConsumerWidget {
     );
     return Scaffold(
       appBar: AppBar(
-        title: const Text('TDD with Riverpod'),
+        title: Text('${AppConfigs.appName} Login'),
       ),
       body: SafeArea(
         child: Column(
@@ -50,9 +51,14 @@ class LoginScreen extends ConsumerWidget {
               controller: passwordController,
             ),
             state.maybeMap(
-              loading: (_) => const Center(child: CircularProgressIndicator()),
-              orElse: () => loginButton(ref),
-            ),
+                loading: (_) =>
+                    const Center(child: CircularProgressIndicator()),
+                orElse: () => Column(
+                      children: [
+                        loginButton(ref),
+                        // registerButton(context),
+                      ],
+                    )),
           ],
         ),
       ),
@@ -71,4 +77,13 @@ class LoginScreen extends ConsumerWidget {
       child: const Text('Login'),
     );
   }
+
+  // Widget registerButton(BuildContext context) {
+  //   return TextButton(
+  //     onPressed: () {
+  //       AutoRouter.of(context).push(RegisterRoute());
+  //     },
+  //     child: const Text('Register'),
+  //   );
+  // }
 }
